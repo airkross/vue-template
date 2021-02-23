@@ -6,6 +6,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {},
   mutations: {},
-  actions: {},
+  actions: {
+    async test() {
+      try {
+        const { data } = await axios.get("todos/1");
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  },
   modules: {}
 });
