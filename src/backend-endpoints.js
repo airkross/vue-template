@@ -1,0 +1,1 @@
+export const todoGet = (payload) => axios.get(`todos/${payload.id}`)

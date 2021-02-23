@@ -1,5 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { todoGet } from '@/backend-endpoints'
+
 
 Vue.use(Vuex);
 
@@ -9,7 +11,7 @@ export default new Vuex.Store({
   actions: {
     async test() {
       try {
-        const { data } = await axios.get("todos/1");
+        const { data } = await todoGet({id:1})
         console.log(data);
       } catch (err) {
         console.error(err);

@@ -12,19 +12,13 @@ import { mapActions } from "vuex";
 export default {
   name: "Home",
   async mounted() {
-    try {
-      const { data } = await this.axios.get("todos/1");
-      this.test();
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-    }
+    this.test();
   },
   methods: {
-    ...mapActions(["test"])
+    ...mapActions(["test"]),
   },
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+  },
 };
 </script>

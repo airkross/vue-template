@@ -22,8 +22,6 @@ let config = {
     }
 };
 
-console.log(config)
-
 const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
