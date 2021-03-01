@@ -8,11 +8,17 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
-
+import { mapActions } from "vuex";
 export default {
   name: "Home",
+  async mounted() {
+    this.GET_TEST();
+  },
+  methods: {
+    ...mapActions('test', ['GET_TEST']),
+  },
   components: {
-    HelloWorld
-  }
+    HelloWorld,
+  },
 };
 </script>
