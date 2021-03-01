@@ -12,10 +12,10 @@ import { mapActions } from "vuex";
 export default {
   name: "Home",
   async mounted() {
-    this.test();
+    this.GET_TEST();
   },
   methods: {
-    ...mapActions(["test"]),
+    ...mapActions('test', ['GET_TEST']),
   },
   components: {
     HelloWorld,

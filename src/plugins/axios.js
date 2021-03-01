@@ -6,8 +6,6 @@ import {
     API_BASE_URL
 } from '@/constants'
 
-localStorage.setItem('user-token', 1233)
-
 let config = {
     baseURL: API_BASE_URL,
     timeout: 60 * 1000, // Timeout
