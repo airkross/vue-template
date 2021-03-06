@@ -24,30 +24,37 @@ const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
     function (config) {
-        // Do something before request is sent
+        console.log(config)
+        // Сделать что-то до отправки запроса
         return config;
     },
     function (error) {
-        // Do something with request error
+        // Сделать что-то с ошибкой запроса
         return Promise.reject(error);
     }
 );
 
-// Add a response interceptor
+// Обрабатать успешные и не успешные ответы запроса.
 _axios.interceptors.response.use(
     function (response) {
-        // Do something with response data
+        // Обработать успешные ответ запроса
+        console.log(response.config.url, response)
         return response;
     },
     function (error) {
-        // Do something with response error
+        console.error(response)
+        // Обработать не успешные ответ запроса
+        if(response.status === 401) {
+            // 1.удалить токен из localStorage/Session
+            // 2.редирект на страницу авторизации
+        }
         return Promise.reject(error);
     }
 );
 
 Plugin.install = function (Vue) {
-    Vue.axios = _axios;
-    window.axios = _axios;
+    Vue.axios = _axios; // кладем в экземпляр vue сконфигурированный экземпляр axios
+    // window.axios = _axios; // кладем в объект window сконфигурированный экземпляр axios
     Object.defineProperties(Vue.prototype, {
         axios: {
             get() {
@@ -64,4 +71,4 @@ Plugin.install = function (Vue) {
 
 Vue.use(Plugin);
 
-export default Plugin;
+export default _axios;
