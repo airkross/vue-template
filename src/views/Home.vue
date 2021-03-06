@@ -1,14 +1,18 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    {{ testGetter }}
+    <input type="text" v-model="changeTest1">
+
+    <hr>
+
+    <pre>
+      {{ test }}
+    </pre>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations, mapGetters, mapState } from "vuex";
 export default {
   name: "Home",
   async mounted() {
@@ -16,9 +20,19 @@ export default {
   },
   methods: {
     ...mapActions('test', ['GET_TEST']),
+    ...mapMutations('test', ['SET_TEST1']),
   },
-  components: {
-    HelloWorld,
+  computed: {
+    changeTest1: {
+      get() {
+        return this.test1
+      },
+      set(newValue) {
+        this.SET_TEST1(newValue)
+      }
+    },
+    ...mapGetters('test', ['testGetter']),
+    ...mapState('test', ['test', 'test1'])
   },
 };
 </script>
